@@ -1,0 +1,8 @@
+
+{
+  "name": "MathScribe AI",
+  "description": "A sophisticated handwritten equation solver that uses Gemini's vision capabilities to transcribe and solve complex mathematical problems directly from your drawings or photos.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

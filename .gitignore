@@ -1,31 +1,24 @@
-__pycache__/
-*.py[cod]
-*$py.class
-
-.venv/
-venv/
-env/
-ENV/
-env.bak/
-venv.bak/
-
-.env
-.env.*
-!.env.example
-
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-.vscode/
-.idea/
-*.swp
-*.swo
-*.sublime-workspace
-*.sublime-project
+node_modules
+dist
+dist-ssr
+*.local
 
-symbols
-
-
-
-
-
-
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

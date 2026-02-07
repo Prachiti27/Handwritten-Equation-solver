@@ -1,74 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handwritten Equation Solver</title>
-    <style>
-        canvas {
-            border: 2px solid black;
-            cursor: crosshair;
-        }
-    </style>
-</head>
-<body>
-    <h2>Draw Equation</h2>
-    <canvas id="canvas" width="400" height="200"></canvas>
-    <br><br>
-    <button onclick="clearCanvas()">Clear</button>
-    <button onclick="sendImage()">Send</button>
-
-    <script>
-    const canvas = document.getElementById("canvas")
-    const ctx = canvas.getContext("2d")
-
-    function initCanvas() {
-        ctx.fillStyle = "white"
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-        ctx.strokeStyle = "black"
-        ctx.lineWidth = 3
-        ctx.lineCap = "round"
-    }
-
-    initCanvas()
-
-    let drawing = false
-
-    canvas.addEventListener("mousedown", (e) => {
-        drawing = true
-        ctx.beginPath()
-        ctx.moveTo(e.offsetX, e.offsetY)
-    })
-
-    canvas.addEventListener("mouseup", () => {
-        drawing = false
-        ctx.beginPath()
-    })
-
-    canvas.addEventListener("mousemove", (e) => {
-        if (!drawing) return
-        ctx.lineTo(e.offsetX, e.offsetY)
-        ctx.stroke()
-    })
-
-    function clearCanvas() {
-        initCanvas()
-        ctx.beginPath()
-    }
-
-    async function sendImage() {
-        const dataURL = canvas.toDataURL("image/png")
-
-        const response = await fetch("http://localhost:8000/predict", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ image: dataURL })
-        })
-
-        const result = await response.json()
-        console.log(result)
-    }
+    <title>MathScribe AI - Handwritten Equation Solver</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
 </script>
-
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
